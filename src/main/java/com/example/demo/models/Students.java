@@ -43,8 +43,8 @@ public class Students {
 	
 //	@Min(value = 0L, message = "The value must be positive")
 //	@Pattern(regexp = "^(0\\.[1-9][0-9]?|[1-9][0-9]*\\.(0[1-9]|1[0-2]))$")
-	@ValidAge(message = "invalid input")
-	private double age;
+//	@ValidAge(message = "invalid input")
+	private String age;
 	
 	public int getId() {
 		return id;
@@ -70,7 +70,7 @@ public class Students {
 		this.first_name = first_name;
 	}
 
-	public double getAge() {
+	public String getAge() {
 		return age;
 	}
 	
@@ -89,7 +89,7 @@ public class Students {
 //	    return valueStr.matches("\\d+(\\.([1-9]|1[0-2]))?");
 //	  }
 
-	public void setAge(double age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

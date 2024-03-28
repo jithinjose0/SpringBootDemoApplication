@@ -36,6 +36,7 @@ public class StudentsTest {
     @Autowired
     private MockMvc mockMvc;
     
+    
     @Test
     public void whenGetRequestToHome_thenCorrectResponse() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
@@ -62,23 +63,8 @@ public class StudentsTest {
     }
 
     
-//    @Test
-//    public void whenPostRequestToUsersAndInValidUser_thenCorrectResponse() throws Exception {
-//        String user = "{\"first_name\": \"\", \"last_name\" : \"gyyyyy\", \"age\" : 20.6}";
-//        mockMvc.perform(MockMvcRequestBuilders.post("/students/add")
-//          .content(user)
-//          .contentType(MediaType.APPLICATION_JSON))
-//          .andExpect(MockMvcResultMatchers.status().isBadRequest());
-//        } 
     
-//    @Test
-//    public void whenPostRequestToUsersAndInvalidAge_thenCorrectResponse() throws Exception {
-//        String user = "{\"first_name\": \"John\", \"last_name\" : \"Smith\", \"age\" : -5}";
-//        mockMvc.perform(MockMvcRequestBuilders.post("/students/add")
-//          .content(user)
-//          .contentType(MediaType.APPLICATION_JSON))
-//          .andExpect(MockMvcResultMatchers.status().isBadRequest());
-//    }
+// first name validatiuon .....
     
     @Test
     public void whenPostRequestToUsersAndInvalidFirstName_thenCorrectResponse() throws Exception {
@@ -107,6 +93,8 @@ public class StudentsTest {
           .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
+    
+// age validation  ......
 //    @Test
 //    public void whenPostRequestToUsersAndInvalidAge_thenCorrectResponse() throws Exception {
 //        String user = "{\"first_name\": \"Johnhhhh\", \"last_name\" : \"Smithhh\", \"age\" : -5}";

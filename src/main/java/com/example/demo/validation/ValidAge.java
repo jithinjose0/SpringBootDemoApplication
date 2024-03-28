@@ -12,13 +12,13 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 
-@Documented
-@Constraint(validatedBy = AgeValidator.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Autowired
+@Constraint(validatedBy = AgeValidator.class)
 public @interface ValidAge {
-	String message() default "Invalid age format. Age must be a positive number with a maximum of two decimal places.";
+    String message() default "Custom validation error message";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
+ 
