@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.models.Phone;
 
 @Repository
-public interface PhoneRepo extends CrudRepository<Phone, Integer> {
+public interface PhoneRepo extends CrudRepository<Phone, Long> {
 }

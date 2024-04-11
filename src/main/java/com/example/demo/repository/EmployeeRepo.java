@@ -8,4 +8,10 @@ import com.example.demo.models.Employee;
 
 @Repository
 public interface EmployeeRepo extends CrudRepository<Employee, Long> {
+
+	Employee getEmployeeById(Long id);
+
+//	Employee updateEmployee(Employee employee);
+
+//	Employee deleteEmployee(Long id);
 }

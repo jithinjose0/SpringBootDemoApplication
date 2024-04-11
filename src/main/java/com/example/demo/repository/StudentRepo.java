@@ -1,12 +1,12 @@
-package com.example.demo.repository;
-
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
-import com.example.demo.models.Students;
-
-
-@Repository
-public interface StudentRepo extends CrudRepository<Students, Integer> {
-}
+//package com.example.demo.repository;
+//
+//
+//import org.springframework.data.repository.CrudRepository;
+//import org.springframework.stereotype.Repository;
+//
+//import com.example.demo.models.Students;
+//
+//
+//@Repository
+//public interface StudentRepo extends CrudRepository<Students, Integer> {
+//}

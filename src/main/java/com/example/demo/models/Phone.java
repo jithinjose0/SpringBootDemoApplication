@@ -18,7 +18,7 @@ public class Phone {
     private String number;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
 	public long getId() {
@@ -37,9 +37,9 @@ public class Phone {
 		this.number = number;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
+//	public Employee getEmployee() {
+//		return employee;
+//	}
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;

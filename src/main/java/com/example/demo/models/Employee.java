@@ -2,6 +2,10 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,11 +27,11 @@ public class Employee {
 
     private int age;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "department_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "employee")
     private List<Phone> phones;
 
     public long getId() {

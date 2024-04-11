@@ -1,6 +1,6 @@
 package com.example.demo.models;
 
-import java.util.List;
+//import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,8 +18,10 @@ public class Department {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private List<Employee> employees;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+//    private List<Employee> employees;
+
+
 
 	public long getId() {
 		return id;
@@ -37,13 +39,13 @@ public class Department {
 		this.name = name;
 	}
 
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
+//	public List<Employee> getEmployees() {
+//		return employees;
+//	}
+//
+//	public void setEmployees(List<Employee> employees) {
+//		this.employees = employees;
+//	}
 
 
 }
