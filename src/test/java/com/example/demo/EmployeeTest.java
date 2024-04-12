@@ -265,7 +265,41 @@ public class EmployeeTest {
 	            .content(employeeJson))
 	            .andExpect(MockMvcResultMatchers.status().isInternalServerError());
 	}
+	
+	
+	@Test
+	public void whengettingalllisterrorwithoutlogin() throws Exception {
 
+	    this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/list")
+	    	.contentType(MediaType.APPLICATION_JSON))
+	        .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+	}
+
+	
+	@Test
+	public void cannotfounduserfromtoken() throws Exception {
+	   String token  = "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxNTIiLCJpc3MiOiJVc2VyRGF0YSIsIm5hbWUiOiJqaXRoaW5qb3NlMTIzIiwiZW1haWwiOiJqaXRoaTEyMzRuMDBAZ21haWwuY29tIiwidXNlcm5hbWUiOiJiaGFyYXRoaTEyMyIsImlhdCI6MTcxMjkwMzI5NywiZXhwIjoxNzE1NDk1Mjk3fQ.PbRjkMhVn4autMMEr-HG12jZ6H5VZOpqYF7Uqzj8MOTKgGgCXiapOdmwhn4E-GG0";
+
+	    // Perform get employees with the obtained token
+	    this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/list")
+	        .header("Authorization", "Bearer " + token)
+	    	.contentType(MediaType.APPLICATION_JSON))
+	        .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+	}
+	
+
+	@Test
+	public void tokenExpired() throws Exception {
+		
+		String token = "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI1MiIsImlzcyI6IlVzZXJEYXRhIiwibmFtZSI6ImJoYXJhdGhpIiwiZW1haWwiOiJiaGFyYXRoaUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImJoYXJhdGhpIiwiaWF0IjoxNzEyOTA4OTE4LCJleHAiOjE3MTI5MDg5MjN9._GvsSlo8ZC0l004c3R0V2xyY7yFUgfPGJiaNCpH0VpGjHeRBEcnlJhXoEtgHuYew";
+
+	    // Perform get employees with the obtained token
+	    this.mockMvc.perform(MockMvcRequestBuilders.get("/api/employees/list")
+	        .header("Authorization", "Bearer " + token)
+	    	.contentType(MediaType.APPLICATION_JSON))
+	        .andExpect(MockMvcResultMatchers.status().isUnauthorized());
+	}
+	
 
         // Create a mock department for ID 52
 //        Department existingDepartment = new Department();

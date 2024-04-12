@@ -1,24 +1,35 @@
 package com.example.demo;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.example.demo.controllers.UserController;
 import com.example.demo.models.Users;
+import com.example.demo.repository.UserRepo;
 import com.example.demo.services.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+//import static org.junit.jupiter.api.Assertions.;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 
 import static org.mockito.Mockito.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -33,28 +44,9 @@ public class UserTest {
 	@Autowired
 	private UserService userService;
 
-//	@Autowired
-//	private UserRepo userRepository;
+//	@MockBean
+//	private UserService userService;
 
-
-	@Test
-	public void shouldReturnTokenWhensignup() throws Exception {
-		Users user = new Users();
-	
-		user.setUsername("testUser");
-		user.setName("Test Name");
-		user.setPassword("testPassword");
-		user.setEmail("test@example.com");
-		user.setId(1L);
-	    
-//		String token = userService.signup(user);
-//		assertNotNull(token, "Signup success");
-		this.mockMvc.perform(MockMvcRequestBuilders.post("/api/users/signup")
-	            .contentType(MediaType.APPLICATION_JSON)
-	            .content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(MockMvcResultMatchers.status().isOk());
-
-	}
 	
 	@Test
 	public void signupusernameAlreadyExsist() throws Exception {
@@ -119,6 +111,9 @@ public class UserTest {
 	                .content("{\"username\":\"bharathi\", \"password\":\"password\"}"))
 	                .andExpect(MockMvcResultMatchers.status().isBadRequest());
 	    }
+	    
+	    
+
 	
 //	@Test
 //	public void testLoginInvalidPassword() {

@@ -59,10 +59,21 @@ public class EmployeeController {
 
 	}
 
+//	@GetMapping("/list")
+//	public @ResponseBody Iterable<Employee> getAllEmployees() {
+//		try {
+//			return employeeService.getAllEmployees();
+//		}catch(Exception e) {
+//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//	}
+	
 	@GetMapping("/list")
-	public @ResponseBody Iterable<Employee> getAllEmployees() {
-		return employeeService.getAllEmployees();
+	public @ResponseBody ResponseEntity<Iterable<Employee>> getAllEmployees() {
+	      return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
+
 	}
+	
 //	@PostMapping("/add")
 //	public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
 //

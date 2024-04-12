@@ -28,25 +28,18 @@ public class TokenService {
 
 	public Claims validatetoken(String token) throws Exception {
 		System.out.println("Inside validation : " + token);
-//		String token = token;
-		if (token == null) {
-			throw new Exception("Token not found in request header");
-		}
 		Claims claims = Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload();
 		Date expirationDate = claims.getExpiration();
 		Date currentDate = new Date();
-
-		if (expirationDate.getTime() > currentDate.getTime()) {
-			String username = (String) claims.get("username");
-			System.out.println("Username: " + username);
-			if (userRepository.existsByUsername(username)) {
+		
+		String username = (String) claims.get("username");
+		System.out.println("Username: " + username);
+		if (userRepository.existsByUsername(username)) {
 //				Users user = userRepository.findByUsername(username);
-				return claims;
-			} else {
-				throw new Exception("User not found");
-			}
+			return claims;
 		} else {
-			throw new Exception("Token expired");
+			throw new Exception("User not found");
 		}
+		
 	}
 }

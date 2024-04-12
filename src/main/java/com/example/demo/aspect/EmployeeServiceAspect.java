@@ -19,25 +19,25 @@ import com.example.demo.models.Employee;
 @Component
 public class EmployeeServiceAspect {
 
-	@Pointcut("execution(* com.example.demo.services.EmployeeService.createEmployee(..)) && args(employee)")
-	private void forEmployeeService(Employee employee) {
-	}
+//	@Pointcut("execution(* com.example.demo.services.EmployeeService.createEmployee(..)) && args(employee)")
+//	private void forEmployeeService(Employee employee) {
+//	}
 
-	@Before("forEmployeeService(employee)")
+	@Before("execution(* com.example.demo.services.EmployeeService.createEmployee(..)) && args(employee)")
 	public void before(JoinPoint joinPoint, Employee employee) {
 		String name = employee.getName();
 		System.out.println("Before method:" + joinPoint.getSignature());
 		System.out.println("Before Name:" + name);
 	}
 
-	@After("forEmployeeService(employee)")
+	@After("execution(* com.example.demo.services.EmployeeService.createEmployee(..)) && args(employee)")
 	public void after(JoinPoint joinPoint, Employee employee) {
 		String name = employee.getName();
 		System.out.println("After method:" + joinPoint.getSignature());
 		System.out.println("After Name:" + name);
 	}
 
-	@Around(value = "forEmployeeService(employee)")
+	@Around(value = "execution(* com.example.demo.services.EmployeeService.createEmployee(..)) && args(employee)")
 	public void aroundAdvice(ProceedingJoinPoint jp, Employee employee) throws Throwable {
 		System.out.println(
 				"The method aroundAdvice() before invokation of the method " + jp.getSignature().getName() + " method");
